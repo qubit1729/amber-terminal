@@ -56,6 +56,7 @@ Esc goes back. Ctrl or Cmd plus 1 to 4 picks a panel. `LAYOUT 1`, `LAYOUT 2` or 
 | ERN | Earnings calendar |
 | OMON | Options chain with implied volatility, greeks, open interest and the implied move |
 | GP, GIP, HP | Price chart, intraday chart, price history |
+| RRG | Relative rotation and strength; see [RRG_README.md](RRG_README.md) for commands, method and limits |
 | ECO | Economic calendar |
 | ECST | US economic statistics |
 | GC | Yield curves |

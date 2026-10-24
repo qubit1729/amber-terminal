@@ -3,6 +3,7 @@
 // dvd.js, ee.js, anr.js), so the numbers the tests check are the numbers on screen.
 import { api, esc, px, pct, cls, big, num, date } from "../api.js";
 import { table, kv, sect, tabs, html, lineChart } from "../ui.js";
+import { sortableTable } from "../sortable-table.js";
 import { toSecurity, YELLOW } from "../securities.js";
 
 // Six line colours that read on black and don't look like the green and red of up and down.
@@ -518,7 +519,7 @@ async function renderPort(ctx) {
     if (!ctx.live()) return;
     const t = d.totals;
     body.innerHTML = "";
-    const holdings = table(
+    const holdings = sortableTable(
       d.holdings,
       [
         { key: "sec", label: "Security", left: true, lbl: true },
@@ -545,18 +546,12 @@ async function renderPort(ctx) {
           html: true,
         },
       ],
-      { onRow: (r) => ctx.go(r.sec) },
-    );
-    // The remove button, caught before the row's click opens the security.
-    holdings.addEventListener(
-      "click",
-      async (e) => {
-        if (!e.target.closest(".xbtn")) return;
-        e.stopPropagation();
-        const r = d.holdings[+e.target.closest("tr").dataset.i];
-        if (await change("DEL", r.sec.split(" "))) load();
+      {
+        onRow: r => ctx.go(r.sec),
+        initialSort: ctx.panel.portSort || { key: null, direction: "asc" },
+        onSort: sort => { ctx.panel.portSort = sort; },
+        onRemove: async r => { if (await change("DEL", r.sec.split(" "))) load(); },
       },
-      true,
     );
     body.append(
       html(

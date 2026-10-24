@@ -1,5 +1,6 @@
 // Every terminal function, by its code. Each file exports a list of { id, name, group, source, needs, render(ctx) }.
 // To add a screen: write public/js/fn/<area>.js (and lib/fn/<name>.js if it needs server data), then import it here.
+import rrg from "./rrg.js";
 import market from "./market.js";
 import security from "./security.js";
 import calendar from "./calendar.js";
@@ -16,4 +17,4 @@ import equity from "./equity.js";
 import playbooks from "./playbooks.js";
 
 export const FUNCS = {};
-for (const f of [...market, ...security, ...calendar, ...newsfilings, ...docsearch, ...rates, ...options, ...btst, ...coverage, ...workspace, ...equity, ...playbooks, ...apiHelp, ...meta]) FUNCS[f.id] = f;
+for (const f of [...rrg, ...market, ...security, ...calendar, ...newsfilings, ...docsearch, ...rates, ...options, ...btst, ...coverage, ...workspace, ...equity, ...playbooks, ...apiHelp, ...meta]) FUNCS[f.id] = f;

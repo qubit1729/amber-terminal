@@ -333,6 +333,7 @@ const KEYS = [
   ["CRYPTO"],
   ["MOST"],
   ["EQS"],
+  ["RRG"],
   ["W"],
   ["ALRT"],
   ["HELP"],
